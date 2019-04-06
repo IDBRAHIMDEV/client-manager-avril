@@ -28,7 +28,7 @@
             <td>{{ client.email }}</td>
             <td class="text-right">
               <a href="" class="btn btn-sm btn-dark mr-1"><i class="fa fa-eye"></i></a>
-              <a href="" class="btn btn-sm btn-warning"><i class="fa fa-times"></i></a>
+              <button class="btn btn-sm btn-warning" (click)="removeClient(client.id)"><i class="fa fa-times"></i></button>
             </td>
           </tr>
         </tbody>
