@@ -1,3 +1,4 @@
+import { Client } from './../../models/client';
 import { ClientService } from './../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +11,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class AddClientComponent implements OnInit {
   
-  myClient = {
+  myClient: Client = {
     name: '',
     phone: '',
     email: '',

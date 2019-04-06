@@ -32,4 +32,16 @@ export class ClientService {
   deleteClient(id) {
     return this.clientCollection.doc(id).delete();
   }
+
+  getClient(id) {
+    return this.clientCollection.doc(id).valueChanges();
+  }
+
+  updateClient(id, client: Client) {
+    return this.clientCollection.doc(id).update(client);
+  }
+
+  setStatusClient(client) {
+    return this.clientCollection.doc(client.id).update({active: !client.active});
+  }
 }
