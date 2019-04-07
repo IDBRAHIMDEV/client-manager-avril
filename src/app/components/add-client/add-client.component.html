@@ -12,7 +12,12 @@
   
   <div class="row">
     <div class="col-md-8 mx-auto">
-     <form #f="ngForm" (submit)="persistClient(f)">
+     <form [(ngModel)]="getImage" #f="ngForm" (submit)="persistClient(f)">
+      
+      <img [src]="previewImage" width="100px" height="80px" alt="">
+
+      <input (change)="showImage($event)" type="file" name="image" id="image">
+
       <div class="form-group">
         <label for="Name">Name</label>
         <input autocomplete="off" required minlength="3" maxlength="10"  pattern="[a-zA-Z0-9 ]*" #fullName="ngModel" (change)="log(fullName)" [(ngModel)]="myClient.name" type="text" name="Name" id="Name" class="form-control" placeholder="" aria-describedby="helpId">
