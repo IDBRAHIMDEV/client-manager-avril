@@ -26,18 +26,32 @@ export class AddClientComponent implements OnInit {
   ngOnInit() {
   }
 
-  persistClient() {
-    this.clientService.addClient(this.myClient)
-                      .then(res => {
-                       
-                        this.flashMessage.show('Client added', {
-                          cssClass: 'alert-success',
-                          timeout: 3000
-                        });
+  persistClient(form) {
+   
+    if(form.valid) {
+      this.clientService.addClient(this.myClient)
+      .then(res => {
+       
+        this.flashMessage.show('Client added', {
+          cssClass: 'alert-success',
+          timeout: 3000
+        });
 
-                        this.router.navigate(['/clients']);
-                      })
-                      .catch(err => console.log(err))
+        this.router.navigate(['/clients']);
+      })
+      .catch(err => console.log(err))
+    }else {
+      this.flashMessage.show('Your form is Invalid !!', {
+        cssClass: 'alert-warning',
+        timeout: 3000
+      });
+    }
+    
+   }
+
+
+  log(data) {
+    console.log(data)
   }
 
 }

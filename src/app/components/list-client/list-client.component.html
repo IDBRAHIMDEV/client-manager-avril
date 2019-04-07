@@ -15,6 +15,13 @@
 
   <div class="row">
     <div class="col-md-12">
+
+       <input (keyup.enter)="searchClient()" 
+              class="form-control my-3" 
+              [(ngModel)]="search" 
+              type="text" 
+              placeholder="Search...">
+
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -27,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of clients">
+          <tr *ngFor="let client of resultSearch">
             <td>
               <button (click)="toggleStatus(client)" class="btn btn-sm" [ngClass]="{
                 'btn-success': client.active,

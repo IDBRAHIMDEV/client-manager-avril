@@ -12,11 +12,17 @@
   
   <div class="row">
     <div class="col-md-8 mx-auto">
-      
+     <form #f="ngForm" (submit)="persistClient(f)">
       <div class="form-group">
         <label for="Name">Name</label>
-        <input [(ngModel)]="myClient.name" type="text" name="Name" id="Name" class="form-control" placeholder="" aria-describedby="helpId">
-        <small id="helpId" class="text-muted">Help text</small>
+        <input autocomplete="off" required minlength="3" maxlength="10"  pattern="[a-zA-Z0-9 ]*" #fullName="ngModel" (change)="log(fullName)" [(ngModel)]="myClient.name" type="text" name="Name" id="Name" class="form-control" placeholder="" aria-describedby="helpId">
+          <div class="alert alert-danger" *ngIf="fullName.invalid && fullName.touched">
+               
+               <div *ngIf="fullName.errors.required">This field is Required !!</div>
+               <div *ngIf="fullName.errors.minlength">This field should be great than 3 caracters !!</div>
+               <div *ngIf="fullName.errors.email">This field is not email !!</div>
+               <div *ngIf="fullName.errors.pattern">This field is not respect our pattern !!</div>
+          </div>
       </div>
 
       <div class="form-group">
@@ -37,8 +43,9 @@
               <small id="helpId" class="text-muted">Help text</small>
             </div>
          
-       <button class="btn btn-block btn-danger" (click)="persistClient()">
+       <button class="btn btn-block btn-danger" [disabled]="f.invalid">
          <i class="fa fa-send"></i> Save
         </button>
+      </form>
     </div>
   </div>

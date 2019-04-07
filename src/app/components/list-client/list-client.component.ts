@@ -9,8 +9,11 @@ import { Client } from 'src/app/models/client';
   styleUrls: ['./list-client.component.css']
 })
 export class ListClientComponent implements OnInit {
+ 
+  search = "";
   total = 0;
   clients:any[] = [];
+  resultSearch:any[] = [];
   constructor(private clientService: ClientService, private flashMessage: FlashMessagesService,) { }
 
   ngOnInit() {
@@ -20,7 +23,7 @@ export class ListClientComponent implements OnInit {
   getAllClients() {
     this.clientService.getClients()
                       .subscribe((response: any[]) => {
-                        this.clients = response;
+                        this.resultSearch = this.clients = response;
                         this.total = this.totalBalances();
                         console.log(response)
                       })
@@ -48,9 +51,20 @@ export class ListClientComponent implements OnInit {
   
   
 totalBalances() {
-   return this.clients.reduce((total, client) => {
+   return this.resultSearch.reduce((total, client) => {
      return total + parseFloat(client.balance);
    }, 0)
+}
+
+searchClient() {
+  if(this.search) {
+      this.resultSearch = this.clients.filter(client => client.name.toLowerCase().includes(this.search.toLowerCase()) || client.email.toLowerCase().includes(this.search.toLowerCase()));
+  }else {
+    
+    this.resultSearch = this.clients;
+  }
+
+  this.total = this.totalBalances()
 }
           
 

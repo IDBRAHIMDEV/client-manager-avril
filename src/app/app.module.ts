@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 //Import AngularFire Module
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { ListClientComponent } from './components/list-client/list-client.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
@@ -38,6 +39,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
